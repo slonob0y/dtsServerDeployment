@@ -1,4 +1,4 @@
-name: "Deploy Ke Heroku By Rizqi Pratama"
+name: "Homework Server Deployment"
 
 on:
   push:
