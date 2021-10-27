@@ -11,7 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - run: ./golangci-lint --verbose run
+      - name: Setup golangci-lint
+        uses: golangci/golangci-lint-action@v2
+        with:
+          version: v1.42.1
+          args: --verbose 
+      # - run: ./golangci-lint --verbose run
       - uses: akhileshns/heroku-deploy@v3.12.12 # Deploy ke heroku
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
