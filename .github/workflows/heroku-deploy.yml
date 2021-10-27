@@ -1,19 +1,19 @@
-name: deploy-homework
+name: "Deploy Ke Heroku By Rizqi Pratama"
 
-on: push
+on:
+  push:
+    branches:
+      - main
+      - master
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Setup golangci-lint
-        uses: golangci/golangci-lint-action@v2
-        with:
-          version: v1.42.1
-          args: --verbose 
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      - run: ./golangci-lint --verbose run
+      - uses: akhileshns/heroku-deploy@v3.12.12 # Deploy ke heroku
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "zazhil-server-deployment" #Must be unique in Heroku
+          heroku_app_name: "zazhil-server-deployment" 
           heroku_email: "zazhil24@gmail.com"
